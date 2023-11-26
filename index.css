@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+
+.username-input {
+    background-color: #c0bfbf;
+    border-radius: 3px;
+    border: 1px solid #808080;
+    padding: 10px;
+    
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.title{
+    text-align: center;
+}
+
+.username-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.login-button{
+    display: none;
+    width: 100%;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.message-box-container{
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    margin-left: -150px;
+}
+
+.message-box{
+    width: 230px;
+    padding: 10px;
+}
+
+.message-send{
+    display: none;
+    width: 70px;
+    padding: 10px;
+}
+
+
+.message-showroom{
+    display: none;
+    width: 100%;
+    float: left;
+    overflow-y: auto;
+    height: 550px;
+}
+
+
+
+

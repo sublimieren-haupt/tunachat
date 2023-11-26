@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <title>title</title>
+</head>
+<body>
+    <div class="username-container" id="usrcon">
+        <p class="title">
+            TunaChat
+        </p>
+        <input placeholder="Takma İsim" maxlength="15" class="username-input" id="username-input">
+        <button class="login-button" id="loginbtn" onclick="getToChat()">
+            Giriş Yap
+        </button>
+    </div>
+    <div class="message-showroom" id="msgshowroom">
+        <div id="messagerecv" >
+        </div>
+        <div class="message-box-container">
+            <input placeholder="Mesaj Yaz" class="message-box" id="msgbox">
+            <button class="message-send" id="msgsend" onclick="send_message()">Gönder</button>
+        </div>
+    </div>
+</body>
+</html>
