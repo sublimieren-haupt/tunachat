@@ -41,6 +41,7 @@ p{
 .message-box{
     width: 230px;
     padding: 10px;
+    outline: none;
 }
 
 .message-send{
