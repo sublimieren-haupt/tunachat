@@ -163,9 +163,11 @@ function loads_chat(){
             console.log(prev_name)
             parent.append(message_element)
             
+            
           })
           var msgDir = document.getElementById("msgshowroom")
-          msgDir.scrollTop = msgDir.scrollHeight;
+            msgDir.scrollTop = msgDir.scrollHeight;
+          window.scrollTo(0, msgDir.scrollHeight)
         })
 }
 
