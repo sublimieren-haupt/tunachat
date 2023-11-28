@@ -34,20 +34,26 @@ p{
 .message-box-container{
     position: absolute;
     bottom: 5px;
-    left: 50%;
-    margin-left: -150px;
+    width: 99%;
+    /*left: 50%;
+    margin-left: -150px;*/
 }
 
 .message-box{
-    width: 230px;
+    width: 92%;
     padding: 10px;
-    outline: none;
+    border: 1px solid gray;
+    border-radius: 15px;
+    transition-duration: 0.2s;
 }
 
 .message-send{
     display: none;
     width: 70px;
     padding: 10px;
+    border: 1px solid gray;
+    border-radius: 0 15px 15px 0;
+    transition-duration: 0.5s;
 }
 
 
