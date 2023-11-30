@@ -2,7 +2,7 @@
 name: Hata raporu
 about: Bir hata rapor et.
 title: "[ HATA RAPORU ]"
-labels: ''
+labels: hata raporu
 assignees: ''
 
 ---
