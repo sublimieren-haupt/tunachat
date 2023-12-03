@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="index.js"></script>
+    <title>TunaChat</title>
+</head>
+<body style="background-color: #303030;" id="bg">
+    <div id ="dialogc" class="dialog-container">
+        <div class="dialog-box">
+            <p class="dialog-title">YENİLİKLER</p>
+            <hr class="newspaper-spl">
+                <li class="newspaper-list">Yazının ekranın dışına taşma sorunu düzeltildi</li>
+                <li class="newspaper-list">Yenilikler ekranı eklendi</li>
+                <li class="newspaper-list">Scroll Bar (Kaydırma çubuğu) yeniden tasarlandı</li>
+                <li class="newspaper-list">Yeni arkaplan gradyan efekti eklendi! açmak için sohbet kutucuğuna "/extal NewGradientBG 1" yazın kapatmak için ise "/extal NewGradientBG 0" yazın!</li>
+                <li class="newspaper-list">Blur efektleri optimize edildi ve performans sorunu olan elementler için donanım hozlandırma açıldı</li>
+                <p class="newspaper-footer">Bu güncelleme bunlarla sınırlı olmamakla beraber bunlarıda içerebilir</p>
+                    <li class="newspaper-footer-list">Yönetim konsolu iyileştirmeleri</li>
+                    <li class="newspaper-footer-list">Yüksekkurul rütbe değişiklikleri</li>
+                    <li class="newspaper-footer-list">SecUr güncelleme paketi</li>
+                    <li class="newspaper-footer-list">Secret Service gizli güncelemeleri</li>
+                    <li class="newspaper-footer-list">Yönetim paneli RegEX güncelemeleri</li>
+                <p class="newspaper-footer"> Bu tip güncellemeler gizli yapılacak ve sayaç attıracaktır, bu websiteye girdiğiniz anda bu güncellemeleri kabul etmiş olursunuz</p>
+            <div class="newspaper-bc"><button class="newspaper-close-button" onclick="closeDialog()">Anladım</button></div>
+        </div>
+    </div>
+    <div id="outdated-ver" style="display: none;">
+        <h4 id="error-message">
+            Tarihi geçmiş bir sürüm kullanılyor
+            - Çerezleri temizlemeyi deneyin
+        </h4>
+    </div>
+    <div id="userspace">
+    <div class="username-container" id="usrcon">
+        <p class="title">
+            TunaChat
+        </p>
+        <input placeholder="Takma İsim" maxlength="15" class="username-input" id="username-input">
+        <button class="login-button" id="loginbtn" onclick="getToChat()">
+            Giriş Yap
+        </button>
+    </div>
+    <div class="message-showroom" id="msgshowroom">
+        <div id="messagerecv">
+        </div>
+        <div class="message-box-container">
+            <input placeholder="Mesaj Yaz" class="message-box" id="msgbox">
+            <button class="message-send" id="msgsend" onclick="send_message()">Gönder</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

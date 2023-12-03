@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,500&display=swap');
+
+.username-input {
+    background-color: #404040;
+    border-radius: 3px;
+    padding: 10px;
+    color: white;
+    border: none;
+    outline: none;
+    
+}
+
+img {
+    filter: invert(100%);
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+    color:white;
+}
+
+.title{
+    text-align: center;
+    color: white;
+}
+
+.username-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.login-button{
+    display: none;
+    width: 100%;
+    padding: 5px;
+    margin-top: 15px;
+    background-color: #404040;
+    border-radius: 15px;
+    border: none;
+    color: white;
+}
+
+.message-box-container{
+    position: fixed;
+    bottom: 0px;
+    width: 99%;
+    background-color: rgba(78, 78, 78, 0.1);
+    backdrop-filter: blur(5px);
+    border: 0px solid gray;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translate3d(0,0,0);
+    transform: translateZ(0);
+    /*left: 50%;
+    margin-left: -150px;*/
+}
+
+.message-box{
+    width: 92%;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    transition-duration: 0.2s;
+    background-color: rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px);
+    outline: none;
+    color: rgba(255, 243, 243, 0.507);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translate3d(0,0,0);
+    transform: translateZ(0);
+}
+
+
+
+.message-send{
+    display: none;
+    width: 70px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 0 15px 15px 0;
+    transition-duration: 0.5s;
+    background-color: rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px);
+    color: rgba(255, 243, 243, 0.507);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translate3d(0,0,0);
+    transform: translateZ(0);
+}
+
+
+.message-showroom{
+    display: none;
+    width: 100%;
+    float: left;
+    overflow-y: auto;
+    height: 100%;
+    margin-bottom: 35px;
+    
+}
+
+
+.dialog-container{
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.582);
+    backdrop-filter: blur(2px);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translate3d(0,0,0);
+    transform: translateZ(0);
+}
+
+
+.dialog-box{
+    background-color: azure;
+    border-radius: 10px;
+    padding: 10px;
+    width: 25%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
+
+.dialog-title{
+    color: black;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 25px;
+}
+
+
+.newspaper-list{
+    font-family: 'Open Sans', sans-serif;
+    list-style-type: circle;
+    margin-left: 9px;
+    font-size: 15px;
+}
+
+.newspaper-footer-list{
+    font-family: 'Open Sans', sans-serif;
+    list-style-type: circle;
+    margin-left: 9px;
+    font-size: 12px;
+    color: gray;
+}
+
+.newspaper-close-button{
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 7px;
+    transition-duration: 0.2s;
+}
+
+.newspaper-close-button:hover{
+    padding: 7px;
+    background-color: white;
+    color: black;
+    border: dotted 3px black;
+    transition-duration: 0.2s;
+}
+
+.newspaper-footer{
+    color: gray;
+    font-size: 12px;
+}
+
+.newspaper-spl{
+    display: none;
+}
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #424242
+  }
+
+::-webkit-scrollbar-thumb {
+    background: #471515;
+    border-radius: 15px;
+    height: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d63232; 
+  }
+
+
+@media only screen and (max-width: 600px) {
+    .message-box{
+        width: 70%;
+    }
+
+    .dialog-title{
+        font-size: 15px;
+    }
+
+    .dialog-box{
+        width: 100%;
+        height: 100%;
+    }
+
+    .newspaper-close-button{
+        width: 80%;
+    }
+
+    .newspaper-bc{
+        text-align: center;
+    }
+
+    .newspaper-spl{
+        display: block;
+    }
+
+}
+
+@keyframes message-recv-anim{
+    0%{
+        filter: blur(35px);
+    }
+    100%{
+        filter: blur(0px);
+    }
+}
+
+
+
+.back-animation {
+    background: linear-gradient(80deg, #000000, #720000);
+    background-size: 800% 800%;
+
+    -webkit-animation: AnimationName 5s ease infinite;
+    -moz-animation: AnimationName 5s ease infinite;
+    animation: AnimationName 5s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 58%}
+    50%{background-position:0% 73%}
+    100%{background-position:0% 43%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 58%}
+    /*50%{background-position:100% 43%}*/
+    100%{background-position:0% 73%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 58%}
+    50%{background-position:25% 73%}
+    70%{background-position:35% 58%}
+    100%{background-position:0% 58%}
+}
