@@ -1,39 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="index.css" rel="stylesheet">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Tuna Chatroom </title>
+    <!-- Google fonts. -->
+    <link href='https://fonts.googleapis.com/css?family=Bungee Outline' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'/>
+    <!-- Use font awesome icons. -->
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
+    <!-- Use firebase app and database. -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+    <!-- The CSS and JS file must be declared after the things above-->
+    <link rel="stylesheet" href="index.css"/>
     <script type="text/javascript" src="index.js"></script>
-    <title>TunaChat</title>
-</head>
-<body style="background-color: #303030;">
-    <div id="outdated-ver" style="display: none;">
-        <h4 id="error-message">
-            Tarihi geçmiş bir sürüm kullanılyor
-            - Çerezleri temizlemeyi deneyin
-        </h4>
-    </div>
-    <div id="userspace">
-    <div class="username-container" id="usrcon">
-        <p class="title">
-            TunaChat
-        </p>
-        <input placeholder="Takma İsim" maxlength="15" class="username-input" id="username-input">
-        <button class="login-button" id="loginbtn" onclick="getToChat()">
-            Giriş Yap
-        </button>
-    </div>
-    <div class="message-showroom" id="msgshowroom">
-        <div id="messagerecv" >
-        </div>
-        <div class="message-box-container">
-            <input placeholder="Mesaj Yaz" class="message-box" id="msgbox">
-            <button class="message-send" id="msgsend" onclick="send_message()">Gönder</button>
-        </div>
-    </div>
-</div>
-</body>
+
+  </head>
+  <body>
+  </body>
 </html>
