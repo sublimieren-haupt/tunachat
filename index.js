@@ -111,9 +111,9 @@ function send_message(){
       return
     
   }
-    db.ref("channels/"+currentChannel+'/chats/').once('value', function(message_object) {
+    db.ref("channels/"+localStorage.getItem("current-channel")+'/chats/').once('value', function(message_object) {
       var index = parseFloat(message_object.numChildren()) + 1
-      db.ref("channels/"+currentChannel+'/chats/' + `message_${index}`).set({
+      db.ref("channels/"+localStorage.getItem("current-channel")+'/chats/' + `message_${index}`).set({
         name: get_name(),
         message: document.getElementById("msgbox").value,
         index: index,
