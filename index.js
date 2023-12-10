@@ -31,6 +31,8 @@ var autulogin = false
 
 var isLogged = false
 
+var terminate_chat = true
+
 function closeChannelList(){
   document.getElementById("channel-l").classList.add("mobile-nav-boot")
 }
@@ -40,6 +42,7 @@ function openChannelList(){
 }
 
 function switchToChannel(channel_name){
+  terminate_chat = true
   if(currentChannel=="genel"){
   document.getElementById(currentChannel).setAttribute("onClick", "switchToChannel('genel')")
   }
@@ -53,7 +56,6 @@ function switchToChannel(channel_name){
   document.getElementById(channel_name).classList.add("current-channel-collider")
   currentChannel = channel_name
   document.getElementById("messagerecv").innerHTML=""
-  loads_chat()
 }
 
 
@@ -123,6 +125,7 @@ function send_message(){
 
 function closeDialog(){
   document.getElementById("dialogc").style.display="none"
+  sessionStorage.setItem("NewspaperDialogShowed", "yes")
 }
 
 function outdated_build(){
@@ -187,6 +190,7 @@ function getToChat(){
 }
 
 function loads_chat(){
+  currentSession = currentChannel
   document.getElementById("mhamburger").classList.remove("hide")
   document.getElementById("mhamburger").classList.add("mobile-navigation-hamburger-m")
   //document.getElementById("mhamburger").classList.remove("mobile-navigation-hamburger")
@@ -200,8 +204,20 @@ function loads_chat(){
       }
     }
   })
-    db.ref("channels/"+currentChannel+'/chats/').on('value', function(messages_object) {
+    db.ref("channels/"+localStorage.getItem("current-channel")+'/chats/').on('value', function(messages_object) {
+      if(terminate_chat==false){
+        console.error("tesst")
+      }
+      if(terminate_chat!=false){
+        if(currentSession==currentChannel){
         document.getElementById("messagerecv").innerHTML=""
+        console.error("test")
+        }
+        else{
+          console.error("hata")
+          return
+        }
+      }
         if(messages_object.numChildren() == 0){
           return
         }
@@ -281,6 +297,9 @@ function loads_chat(){
 }
 
 window.onload = function() {
+  if(sessionStorage.getItem("NewspaperDialogShowed")=="yes"){
+    document.getElementById("dialogc").style.display = "none"
+  }
   if(localStorage.getItem("NewGradientBG") == "1"){
     document.getElementById("bg").classList.add("back-animation")
   }

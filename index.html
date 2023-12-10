@@ -16,7 +16,7 @@
         <hr>
         <div class="channel-showroom">
             <p class="current-channel-collider" onclick="" id="genel">Genel</p>
-            <p class="channel-collider" onclick="switchToChannel('okul')" id="okul">Okul&Ders</p>
+            <a href="channels/okul.html"><p class="channel-collider" id="okul">Okul&Ders</p></a>
         </div>
         <button class="mobile-nav-close-button" onclick="closeChannelList()">Menüyü Kapat</button>
     </div>
@@ -57,6 +57,9 @@
             <button class="message-send" id="msgsend" onclick="send_message()">Gönder</button>
         </div>
     </div>
+<script>
+    localStorage.setItem("current-channel", "genel")
+</script>
 </div>
 </body>
 </html>
