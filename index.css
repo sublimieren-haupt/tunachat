@@ -11,6 +11,12 @@
     
 }
 
+
+li {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
 img {
     filter: invert(100%);
 }
@@ -64,7 +70,7 @@ p{
 }
 
 .message-box{
-    width: 92%;
+    width: 72%;
     padding: 10px;
     border: 1px solid gray;
     border-radius: 15px;
@@ -108,12 +114,12 @@ p{
 
 .message-showroom{
     display: none;
-    width: 100%;
+    width: 80%;
     float: left;
     overflow-y: auto;
     height: 100%;
     margin-bottom: 35px;
-    
+    margin-left: 20%;
 }
 
 
@@ -165,6 +171,7 @@ p{
     list-style-type: circle;
     margin-left: 9px;
     font-size: 15px;
+    color: #000000;
 }
 
 .newspaper-footer-list{
@@ -197,13 +204,58 @@ p{
 .newspaper-footer{
     color: gray;
     font-size: 12px;
+    margin-left: 5px;
 }
 
 .newspaper-spl{
     display: none;
 }
 
+.channel-list{
+    display: none;
+    position: fixed;
+    background-color: beige;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+}
 
+.channel-list-title{
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+}
+
+
+
+.channel-collider{
+    color: black;
+    margin-left: 5px;
+    padding: 5px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 5px;
+    transition-duration: 0.3s;
+}
+
+.channel-collider:hover{
+    border: solid 1px rgb(131, 131, 131);
+    margin-bottom: 1px;
+    transition-duration: 0.3s;
+    background-color: rgb(161, 161, 161);
+}
+
+
+
+.current-channel-collider{
+    background-color: rgb(0, 0, 0);
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    width: 90%;
+    margin: auto;
+    margin-bottom: 5px;
+}
 
 
 
@@ -225,10 +277,65 @@ p{
     background: #d63232; 
   }
 
+.mobile-nav-close-button{
+    display: none;
+}
+
+.hide{
+    display: none;
+}
+
+
+.mobile-navigation-hamburger-m{
+    display: none;
+}
 
 @media only screen and (max-width: 600px) {
+
+    .mobile-nav-boot{
+        display: none !important; 
+    }
+
+    .mobile-nav-close-button{
+        display: block;
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.699);
+        color: white;
+        border:none;
+        backdrop-filter: blur(5px);
+    }
+
+    .mobile-navigation-hamburger-m{
+        display: block;
+        position: fixed !important; 
+        top: 0;
+        margin-top: 5px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .channel-list-m{
+        display: none;
+    }
+
+    .channel-list{
+        width: 100%;
+        z-index: 30;
+        background-color: rgba(255, 255, 255, 0.678);
+        backdrop-filter: blur(5px);
+    }
+
+
     .message-box{
         width: 70%;
+    }
+
+    .message-showroom{
+        margin-left: 0;
     }
 
     .dialog-title{

@@ -1,10 +1,12 @@
 
 
+currentChannel = "genel"
+
 
 const major = 0
-const minor = 3
+const minor = 4
 const patch = 1
-const security = 1
+const security = 2
 
 var c_init = false
 
@@ -28,6 +30,31 @@ var db = firebase.database()
 var autulogin = false
 
 var isLogged = false
+
+function closeChannelList(){
+  document.getElementById("channel-l").classList.add("mobile-nav-boot")
+}
+
+function openChannelList(){
+  document.getElementById("channel-l").classList.remove("mobile-nav-boot")
+}
+
+function switchToChannel(channel_name){
+  if(currentChannel=="genel"){
+  document.getElementById(currentChannel).setAttribute("onClick", "switchToChannel('genel')")
+  }
+  else{
+    document.getElementById(currentChannel).setAttribute("onClick", "switchToChannel('okul')")
+  }
+  document.getElementById(channel_name).setAttribute("onClick", "")
+  document.getElementById(currentChannel).classList.remove("current-channel-collider")
+  document.getElementById(currentChannel).classList.add("channel-collider")
+  document.getElementById(channel_name).classList.remove("channel-collider")
+  document.getElementById(channel_name).classList.add("current-channel-collider")
+  currentChannel = channel_name
+  document.getElementById("messagerecv").innerHTML=""
+  loads_chat()
+}
 
 
 function analytics_logger(){
@@ -82,9 +109,9 @@ function send_message(){
       return
     
   }
-    db.ref('chats/').once('value', function(message_object) {
+    db.ref("channels/"+currentChannel+'/chats/').once('value', function(message_object) {
       var index = parseFloat(message_object.numChildren()) + 1
-      db.ref('chats/' + `message_${index}`).set({
+      db.ref("channels/"+currentChannel+'/chats/' + `message_${index}`).set({
         name: get_name(),
         message: document.getElementById("msgbox").value,
         index: index,
@@ -160,7 +187,20 @@ function getToChat(){
 }
 
 function loads_chat(){
-    db.ref('chats/').on('value', function(messages_object) {
+  document.getElementById("mhamburger").classList.remove("hide")
+  document.getElementById("mhamburger").classList.add("mobile-navigation-hamburger-m")
+  //document.getElementById("mhamburger").classList.remove("mobile-navigation-hamburger")
+  document.getElementById("channel-l").style.display = "block"
+  document.getElementById("channel-l").classList.add("mobile-nav-boot")
+  var inputPanel = document.getElementById("msgbox")
+  inputPanel.addEventListener("keypress", function(event) {
+    if(event.key == "Enter"){
+      if(inputPanel.value != ""){
+        send_message()
+      }
+    }
+  })
+    db.ref("channels/"+currentChannel+'/chats/').on('value', function(messages_object) {
         document.getElementById("messagerecv").innerHTML=""
         if(messages_object.numChildren() == 0){
           return
