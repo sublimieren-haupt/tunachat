@@ -1,17 +1,25 @@
+console.log("[ MAIN ] Ana script başlatılıldı")
+
 
 
 currentChannel = "genel"
 
 
 const major = 0
-const minor = 4
+const minor = 5
 const patch = 1
-const security = 2
+const security = 3
+
+console.log("[ SYSVER ] TunaChat Versiyon :" + major.toString() + "." + minor.toString() + "." + patch.toString())
+console.log("[ SYSVER ] Güvenlik sayacı : " + security.toString())
 
 var c_init = false
+var navbarWaitForDialog
+var inChat
 
+const slur_list = ["aq", "amcık", "amk", "faggot", "nigga", "orospu", "piç", "pic", "sik", "yavsak", "yavşak", "mq", "siktir", "mk"]
 
-
+let arevs_count = 0
 
 var firebaseConfig = {
     apiKey: "AIzaSyCcgbrX_UKi_HYNxwgFQqb18cd6uimK12M",
@@ -23,10 +31,15 @@ var firebaseConfig = {
   };
 if (firebase.apps.length == 0) {
   var app = firebase.initializeApp(firebaseConfig);
+  console.log("[ FirebaseAPIService ] Firebase uygulaması başlatıldı")
 }else {
  var app = firebase.app()
+ console.log("[ FirebaseAPIService ] Firebase uygulaması zaten başlatılmış olan bir firebase uygulama birimi kullanlıyor, rapor ediliyor")
+ console.log("[ AREVS ] Anormalite algılandı.")
+ arevs_count++
 }
 var db = firebase.database()
+console.log("[ FirebaseAPIService ] Veritabanı başlatıldı")
 var autulogin = false
 
 var isLogged = false
@@ -34,14 +47,24 @@ var isLogged = false
 var terminate_chat = true
 
 function closeChannelList(){
-  document.getElementById("channel-l").classList.add("mobile-nav-boot")
+  document.getElementById("channel-l").style.backdropFilter = "blur(0)"
+  document.getElementById("closeMenuButton").style.backdropFilter = "blur(0)"
+  document.getElementById("channel-l").style.width = "0%"
+  document.getElementById("channel-anim-part").style.display = "none"
 }
 
 function openChannelList(){
+  document.getElementById("channel-l").style.width = "100%"
+  document.getElementById("channel-l").style.backdropFilter = "blur(5px)"
+  document.getElementById("closeMenuButton").style.backdropFilter = "blur(5px)"
+  document.getElementById("channel-l").classList.remove("channel-list-m")
   document.getElementById("channel-l").classList.remove("mobile-nav-boot")
+  document.getElementById("channel-anim-part").style.display = "block"
 }
 
 function switchToChannel(channel_name){
+  console.log("[ AREVS ] Anormalite algılandı.")
+  arevs_count++
   terminate_chat = true
   if(currentChannel=="genel"){
   document.getElementById(currentChannel).setAttribute("onClick", "switchToChannel('genel')")
@@ -89,6 +112,7 @@ function send_message(){
     alert("Komut başarıyla uygulandı!")
     document.getElementById("msgbox").value = ""
     localStorage.setItem("NewGradientBG", "0")
+    console.log("[ EXTAL ] NewGradientBG - Yeni kırmızı-siyah gradyan efekti '0' durumuna getirildi")
     return
 
     case "/extal NewGradientBG 1":
@@ -96,18 +120,21 @@ function send_message(){
       alert("Komut başarıyla uygulandı!")
       document.getElementById("msgbox").value = ""
       localStorage.setItem("NewGradientBG", "1")
+      console.log("[ EXTAL ] NewGradientBG - Yeni kırmızı-siyah gradyan efekti '1' durumuna getirildi")
       return
 
     case "/extal TChatNewspaper 0":
       localStorage.setItem("TChatNewspaper", "0")
       alert("Komut başarıyla uygulandı!")
       document.getElementById("msgbox").value = ""
+      console.log("[ EXTAL ] TChatNewspaper - Yenilikler ekranı '0' durumuna getirildi")
       return
     
     case "/extal TChatNewspaper 1":
       localStorage.setItem("TChatNewspaper", "1")
       alert("Komut başarıyla uygulandı!")
       document.getElementById("msgbox").value = ""
+      console.log("[ EXTAL ] TChatNewspaper - Yenilikler ekranı '1' durumuna getirildi")
       return
     
   }
@@ -124,8 +151,15 @@ function send_message(){
 
 
 function closeDialog(){
-  document.getElementById("dialogc").style.display="none"
+  document.getElementById("dialogc").style.display = "none"
   sessionStorage.setItem("NewspaperDialogShowed", "yes")
+  if(inChat==true){
+    document.getElementById("mhamburger").style.display = "block"
+    document.getElementById("navbar").style.display = "block"
+  }
+  else{
+    console.log("[ AREVS ] Anormalite algılandı")
+  }
 }
 
 function outdated_build(){
@@ -146,21 +180,26 @@ function provisionmode(){
 
 
 function version_control(){
+  console.log("[ SYSVER ] güncellemeler kontrol ediliyor...")
   const userspace = document.getElementById("userspace")
   db.ref("Ver/").on("value", function(version_object) {
     version = version_object.val()
     if(version["suspend"] == 1){
+      console.log("[ SYSVER ] Sunucular bakım modunda, pasif duruma geçiriliyor")
       provisionmode()
       return
     }
     if(version["major"] > major){
+      console.log("[ SYSVER ] Bu istemci çok eski bir versiyon kullanıyor, pasif duruma geçiriliyor")
       outdated_build()
       return
     }
     if(version["security"] > security){
+      console.log("[ SYSVER ] Güvenlik güncellemeri eksik, pasif duruma geçiriliyor")
       outdated_security_patch()
       return
     }
+    console.log("[ SYSVER ] Güncellemeler başarıyla kontrol edildi.")
   })
 }
 
@@ -173,6 +212,13 @@ function save_name(username){
 }
 
 function getToChat(){
+  if(sessionStorage.getItem("NewspaperDialogShowed") == "yes"){
+    document.getElementById("navbar").style.display="block"
+  }
+  inChat = true
+  if(sessionStorage.getItem("NewspaperDialogShowed") != "yes"){
+    document.getElementById("dialogc").setAttribute("style", "display: block !important;")
+  }
   analytics_logger()
   if(get_name()=="admin" || get_name()=="ingiltere"){
     if(localStorage.getItem("admin") != "enabled"){
@@ -205,13 +251,9 @@ function loads_chat(){
     }
   })
     db.ref("channels/"+localStorage.getItem("current-channel")+'/chats/').on('value', function(messages_object) {
-      if(terminate_chat==false){
-        console.error("tesst")
-      }
       if(terminate_chat!=false){
         if(currentSession==currentChannel){
         document.getElementById("messagerecv").innerHTML=""
-        console.error("test")
         }
         else{
           console.error("hata")
@@ -296,26 +338,54 @@ function loads_chat(){
         })
 }
 
+var load_navbar
+
 window.onload = function() {
   if(sessionStorage.getItem("NewspaperDialogShowed")=="yes"){
     document.getElementById("dialogc").style.display = "none"
   }
+  else{
+    document.getElementById("navbar").style.display = "none"
+    document.getElementById("mhamburger").style.display = "none"
+  }
   if(localStorage.getItem("NewGradientBG") == "1"){
     document.getElementById("bg").classList.add("back-animation")
+    console.log("[ EXTAL ] NewGradientBG - Yeni kırmızı-siyah gradyan efekti '1' durumuna getirildi")
   }
   if(localStorage.getItem("TChatNewspaper") == "0"){
+    console.log("[ EXTAL ] TChatNewspaper - Yenilikler ekranı '0' durumuna getirildi")
     document.getElementById("dialogc").style.display = "none"
   }
   version_control()
     if(get_name() != null && parseInt(get_name().length)>0){
       autulogin=true
+      if(sessionStorage.getItem("NewspaperDialogShowed")=="yes"){
+        document.getElementById("navbar").style.display="block"
+        load_navbar = false
+      }
       getToChat()
   }
     var username_input = document.getElementById("username-input")
     var enter_button = document.getElementById("loginbtn")
     username_input.onkeyup = function(){
+      let i = 0
         if(username_input.value != "admin" && username_input.value != "ingiltere" && username_input.value.length > 0){
-            enter_button.style.display="block"
+          while(i<slur_list.length){
+            if(username_input.value.toLowerCase().includes(slur_list[i])){
+              slur_dedected = true
+              break
+            }
+            else{
+              slur_dedected = false
+            }
+            i++
+          }
+            if(slur_dedected==true){
+              enter_button.style.display = "none"
+            }
+            else{
+              enter_button.style.display="block"
+            }
         }
         else{
           if(localStorage.getItem("admin")=="enabled"){
@@ -329,9 +399,25 @@ window.onload = function() {
     var send_message = document.getElementById("msgbox")
     var send_message_button = document.getElementById("msgsend")
     send_message.onkeyup = function(){
+      let slur_dedected = false
+      let i = 0
+      while(i<slur_list.length){
+        if(send_message.value.toLowerCase().includes(slur_list[i])){
+          send_message_button.style.display = "none"
+            send_message.style.borderRadius="15px"
+          slur_dedected = true
+          break
+        }
+        else{
+          slur_dedected = false
+        }
+        i++
+      }
         if(send_message.value.length > 0){
+          if(slur_dedected!=true){
             send_message_button.style.display = "inline-block"
             send_message.style.borderRadius="15px 0 0 15px"
+          }
         }
         else{
             send_message_button.style.display = "none"

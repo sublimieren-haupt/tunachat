@@ -11,23 +11,34 @@
 </head>
 <body style="background-color: #303030;" id="bg">
     <img src="hamburger.png" class="mobile-navigation-hamburger hide" onclick="openChannelList()" id="mhamburger">
+    <div class="navigation m-navbar-hide" id="navbar">
+        <p class="navigation-title">TunaChat</p>
+    </div>
     <div class="channel-list channel-list-m" id="channel-l">
+        <div id="channel-anim-part">
         <p class="channel-list-title">Kanallar</p>
         <hr>
         <div class="channel-showroom">
             <p class="current-channel-collider" onclick="" id="genel">Genel</p>
-            <a href="channels/okul.html"><p class="channel-collider" id="okul">Okul&Ders</p></a>
+            <a href="channels/okul.html" style="text-decoration: none;"><p class="channel-collider" id="okul">Okul&Ders</p></a>
         </div>
-        <button class="mobile-nav-close-button" onclick="closeChannelList()">Menüyü Kapat</button>
+        <button class="mobile-nav-close-button" onclick="closeChannelList()" id="closeMenuButton">Menüyü Kapat</button>
+        </div>
     </div>
     <div id ="dialogc" class="dialog-container">
         <div class="dialog-box">
             <p class="dialog-title">YENİLİKLER</p>
             <hr class="newspaper-spl">
-                <li class="newspaper-list">Enter tuşu fonksiyonu eklendi</li>
-                <li  class="newspaper-list">Yazım hatası düzeltildi</li>
-                <li class="newspaper-list">Bazı elementlerin stili güncellendi</li>
-                <li class="newspaper-list">Statik kanal sistemi eklendi</li>
+            <li class="newspaper-list">Bulanıklık efekti için sağlam bir optimizasyon yapıldı</li>
+            <li class="newspaper-list">Navigasyon çubuğu ve başlığı eklendi</li>
+            <li class="newspaper-list">Ana başlık fontu değiştirildi</li>
+            <li class="newspaper-list">Navigasyon çubuğu için animasyonlar eklendi</li>
+            <li class="newspaper-list">Menü simgesi için animasyonlar eklendi</li>
+            <li class="newspaper-list">Kanal listesi için  açılma ve kapanma animasyonu eklendi</li>
+            <li class="newspaper-list">Kullanıcı ismi girişi ve mesaj girişi için küfür filtresi eklendi</li>
+            <li class="newspaper-list">Kanal listesindeki kanal isimleri için alt çizgi kaldırıldı</li>
+            <li class="newspaper-list">Mesaj yükleme ekranı eklendi</li>
+            <li class="newspaper-list">Köşeleri yuvarlatılmış cihazlar için ( mesela Iphone 15 Pro ve 2019 ve sonraki yıllarda çıkan telefonlar) mesaj kutusu görünümü güncellendi</li>
                 <p class="newspaper-footer">Bu güncelleme bunlarla sınırlı olmamakla beraber bunlarıda içerebilir</p>
                 <li class="newspaper-footer-list">Veri işleme&yönetme ile alakalı güvenlik güncellemeleri</li>
             <div class="newspaper-bc"><button class="newspaper-close-button" onclick="closeDialog()">Anladım</button></div>
@@ -51,6 +62,9 @@
     </div>
     <div class="message-showroom" id="msgshowroom">
         <div id="messagerecv">
+            <div class="username-container">
+                <p>Mesajlar Yükleniyor...</p>
+            </div>
         </div>
         <div class="message-box-container">
             <input placeholder="Mesaj Yaz" class="message-box" id="msgbox">
@@ -59,6 +73,20 @@
     </div>
 <script>
     localStorage.setItem("current-channel", "genel")
+    var prevScroll = window.pageYOffset
+  window.onscroll = function(){
+    var currentScroll = window.pageYOffset
+    if(prevScroll > currentScroll){
+        document.getElementsByClassName("m-navbar-hide")[0].style.top = "0px"
+        document.getElementById("mhamburger").style.backgroundColor = "rgba(255, 255, 255, 0.0)"
+    }
+    else{
+      document.getElementsByClassName("m-navbar-hide")[0].style.top = "-39px"
+      document.getElementById("mhamburger").style.backgroundColor = "rgba(255, 255, 255, 0.5)"
+      document.getElementById("mhamburger").style.borderRadius = "3px"
+      prevScroll = currentScroll
+    }
+  }
 </script>
 </div>
 </body>

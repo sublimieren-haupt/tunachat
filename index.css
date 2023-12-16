@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dhurjati&display=swap');
 
 .username-input {
     background-color: #404040;
@@ -8,8 +9,11 @@
     color: white;
     border: none;
     outline: none;
-    
+    margin-top: 10px;
 }
+
+
+
 
 
 li {
@@ -29,6 +33,9 @@ p{
 .title{
     text-align: center;
     color: white;
+    font-family: 'Dhurjati', sans-serif;
+    font-size: 30px;
+    margin-bottom: -0.1px;
 }
 
 .username-container{
@@ -49,6 +56,38 @@ p{
     border: none;
     color: white;
 }
+
+.navigation{
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 80%;
+    background-color: #00000070;
+    height: 39px;
+    right: 0;
+    right: 0;
+    z-index: 35;
+    backdrop-filter: blur(5px);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translate3d(0,0,0);
+    transform: translateZ(0);
+    transition: top 0.3s;
+}
+
+.navigation-title{
+    font-family: 'Dhurjati', sans-serif;
+    color: white;
+    text-align: center;
+    height: 100%;
+    margin-top: 3px;
+}
+
+
 
 .message-box-container{
     position: fixed;
@@ -91,6 +130,8 @@ p{
 
 
 
+
+
 .message-send{
     display: none;
     width: 70px;
@@ -118,6 +159,7 @@ p{
     float: left;
     overflow-y: auto;
     height: 100%;
+    margin-top: 30px;
     margin-bottom: 35px;
     margin-left: 20%;
 }
@@ -142,6 +184,7 @@ p{
     perspective: 1000;
     transform: translate3d(0,0,0);
     transform: translateZ(0);
+    display: none;
 }
 
 
@@ -155,7 +198,7 @@ p{
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-
+    z-index: 48;
 }
 
 .dialog-title{
@@ -292,6 +335,18 @@ p{
 
 @media only screen and (max-width: 600px) {
 
+    .loading-text{
+        margin-left: 0;
+    }
+
+    .m-navbar-hide{
+        top: -39px;
+    }
+
+    .navigation{
+        width: 100%;
+    }
+
     .mobile-nav-boot{
         display: none !important; 
     }
@@ -306,8 +361,17 @@ p{
         background-color: rgba(0, 0, 0, 0.699);
         color: white;
         border:none;
-        backdrop-filter: blur(5px);
-    }
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        -webkit-transform: translate3d(0,0,0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000;
+        transform: translate3d(0,0,0);
+        transform: translateZ(0);
+        will-change: contents;
+}
+    
 
     .mobile-navigation-hamburger-m{
         display: block;
@@ -316,6 +380,9 @@ p{
         margin-top: 5px;
         width: 30px;
         height: 30px;
+        margin-left: 5px;
+        z-index: 40;
+        transition-duration: 0.3s;
     }
 
     .channel-list-m{
@@ -323,12 +390,26 @@ p{
     }
 
     .channel-list{
-        width: 100%;
-        z-index: 30;
+        width: 0%;
+        z-index: 46;
         background-color: rgba(255, 255, 255, 0.678);
-        backdrop-filter: blur(5px);
-    }
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        -webkit-transform: translate3d(0,0,0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000;
+        transform: translate3d(0,0,0);
+        transform: translateZ(0);
+        will-change: contents;
+        transition-duration: 0.3s;
+}
+    
 
+    .message-box-container{
+        margin-bottom: 10px;
+        background-color: #00000000;
+    }
 
     .message-box{
         width: 70%;
@@ -345,6 +426,8 @@ p{
     .dialog-box{
         width: 100%;
         height: 100%;
+        z-index: 46 !important;
+        backdrop-filter: blur(0);
     }
 
     .newspaper-close-button{
@@ -361,14 +444,7 @@ p{
 
 }
 
-@keyframes message-recv-anim{
-    0%{
-        filter: blur(35px);
-    }
-    100%{
-        filter: blur(0px);
-    }
-}
+
 
 
 
