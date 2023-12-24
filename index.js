@@ -2,7 +2,12 @@ console.log("[ MAIN ] Ana script başlatılıldı")
 
 
 
-currentChannel = "genel"
+
+
+
+
+
+var currentChannel = "genel"
 
 
 const major = 0
@@ -17,7 +22,9 @@ var c_init = false
 var navbarWaitForDialog
 var inChat
 
-const slur_list = ["aq", "amcık", "amk", "faggot", "nigga", "orospu", "piç", "pic", "sik", "yavsak", "yavşak", "mq", "siktir", "mk"]
+const slur_list = ["aq", "amcık", "amk", "faggot", "nigga", "orospu", "piç", "pic", "sik", "yavsak", "yavşak", "mq", "siktir", "mk", "oç",
+"oc", "yarrak", "got", "göt", "keltoş", "amına", "koydum",  "amcığ", "amcik", "amcuk", "amina", "amlı", "amında", "ananın", "anal", "kaşar",
+"pezevenk", "çük", "amcı", "fuck", "sık", "slk"]
 
 let arevs_count = 0
 
@@ -38,6 +45,10 @@ if (firebase.apps.length == 0) {
  console.log("[ AREVS ] Anormalite algılandı.")
  arevs_count++
 }
+
+
+
+
 var db = firebase.database()
 console.log("[ FirebaseAPIService ] Veritabanı başlatıldı")
 var autulogin = false
@@ -55,8 +66,6 @@ function closeChannelList(){
 
 function openChannelList(){
   document.getElementById("channel-l").style.width = "100%"
-  document.getElementById("channel-l").style.backdropFilter = "blur(5px)"
-  document.getElementById("closeMenuButton").style.backdropFilter = "blur(5px)"
   document.getElementById("channel-l").classList.remove("channel-list-m")
   document.getElementById("channel-l").classList.remove("mobile-nav-boot")
   document.getElementById("channel-anim-part").style.display = "block"
@@ -104,8 +113,11 @@ function analytics_logger(){
 
 analytics_logger()
 
+
+
 function send_message(){
   var message_value=document.getElementById("msgbox").value
+  document.getElementById("msgsend").style.display="none"
   switch(message_value){
     case "/extal NewGradientBG 0":
     document.getElementById("bg").classList.remove("back-animation")
@@ -148,13 +160,14 @@ function send_message(){
       document.getElementById("msgbox").value = ""
       })
     }
+    
 
 
 function closeDialog(){
   document.getElementById("dialogc").style.display = "none"
   sessionStorage.setItem("NewspaperDialogShowed", "yes")
   if(inChat==true){
-    document.getElementById("mhamburger").style.display = "block"
+    document.getElementById("mhamburger").classList.add("mnh-show")
     document.getElementById("navbar").style.display = "block"
   }
   else{
@@ -166,6 +179,9 @@ function outdated_build(){
   var error_screen = document.getElementById("outdated-ver")
   userspace.style.display = "none"
   error_screen.style.display = "block"
+  document.getElementById("mhamburger").style.display="none"
+  document.getElementById("navbar").style.display="none"
+  document.getElementById("channel-l").style.display="none"
 }
 
 function outdated_security_patch(){
@@ -212,6 +228,11 @@ function save_name(username){
 }
 
 function getToChat(){
+  document.title = "TunaChat - " + localStorage.getItem("current-channel")
+  document.getElementById("toast").style.top="42px"
+  setTimeout(function(){
+    document.getElementById("toast").style.top="-195px"
+  }, 5000);
   if(sessionStorage.getItem("NewspaperDialogShowed") == "yes"){
     document.getElementById("navbar").style.display="block"
   }
@@ -309,12 +330,13 @@ function loads_chat(){
             message_element.style.marginTop = "-15px"
             message_element.style.width = "80%"
             message_element.style.wordWrap = "break-word"
-            if(name=="ingiltere" || name=="admin"){
+            if(name=="ingiltere" || name=="admin" || name=="Selçuk"){
               var admin_tag = document.createElement("img")
               admin_tag.src = "admin_tag.png"
               admin_tag.style.width = "30px"
               admin_tag.style.height = "30px"
               admin_tag.style.marginBottom = "-7px"
+              admin_tag.style.filter="invert(0%)"
               username_element.style.color = "green"
               username_element.append(admin_tag)
             }
@@ -341,6 +363,30 @@ function loads_chat(){
 var load_navbar
 
 window.onload = function() {
+  if(localStorage.getItem("admin")=="enabled"){
+    document.getElementById("logOffButton").style.display="inline-block"
+  }
+  var sconsole = false
+  var con = document.getElementById("con")
+  window.addEventListener("keydown", function(e){
+    if(e.key=='"'){
+      if(sconsole==false){
+        if(this.localStorage.getItem("console")!="enabled"){
+          return
+        }
+        if(this.localStorage.getItem("admin")!="enabled"){
+          this.document.getElementById("admin-error").style.display="block"
+          this.document.getElementById("devtool").style.display="none"
+        }
+        con.style.display="block"
+        sconsole=true
+      }
+      else{
+        con.style.display="none"
+        sconsole=false
+      }
+    }
+  })
   if(sessionStorage.getItem("NewspaperDialogShowed")=="yes"){
     document.getElementById("dialogc").style.display = "none"
   }
@@ -416,12 +462,14 @@ window.onload = function() {
         if(send_message.value.length > 0){
           if(slur_dedected!=true){
             send_message_button.style.display = "inline-block"
-            send_message.style.borderRadius="15px 0 0 15px"
+            send_message.classList.add("remove-border-radius")
+            send_message.classList.remove("add-border-radius")
           }
         }
         else{
             send_message_button.style.display = "none"
-            send_message.style.borderRadius="15px"
+            send_message.classList.add("add-border-radius")
+            send_message.classList.remove("remove-border-radius")
         }
     }
     

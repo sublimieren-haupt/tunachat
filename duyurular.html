@@ -19,48 +19,23 @@
         <p class="channel-list-title">Kanallar</p>
         <hr>
         <div class="channel-showroom">
-            <div class="ann-div">
-            <a href="duyurular" style="text-decoration: none;"><p class="ann" id="okul">Duyurular</p></a>
+            <div class="ann-div" style="background-color: black;">
+            <p class="ann" id="okul" style="color:white;">Duyurular</p>
             </div>
             <hr>
-            <p class="current-channel-collider" onclick="" id="genel">Genel</p>
+            <a href="index.html" style="text-decoration: none;"><p class="channel-collider" onclick="" id="genel">Genel</p></a>
             <a href="channels/okul.html" style="text-decoration: none;"><p class="channel-collider" id="okul">Okul&Ders</p></a>
             <hr class="quick-actionbar-splitter">
             <button class="changelog-button" style="right: 75px; display: none;" id="logOffButton" onclick="localStorage.removeItem('name');location.reload()">Oturumu Kapat</button>
-            <a href="changelog.html"><button class="changelog-button">Yenilikler</button></a>
+            <a href="changelog.html"><button class="changelog-button">Yenilikler</button>
         </div>
         <button class="mobile-nav-close-button" onclick="closeChannelList()" id="closeMenuButton">Menüyü Kapat</button>
         </div>
     </div>
-    <div id ="dialogc" class="dialog-container">
+    <div id ="dialogc" class="dialog-container" style="display: none !important;">
         <div class="dialog-box">
-            <div class="dialog-title-wrapper">
             <p class="dialog-title">YENİLİKLER</p>
-            </div>
             <hr class="newspaper-spl">
-            <li class="newspaper-list">Tutarlılık iyileştirildi</li>
-            <li class="newspaper-list">Mobil cihazlar için blur ( bulanıklık efekti ) kaldırıldı</li>
-            <li class="newspaper-list">Mobil cihazlar için mesaj kutusu görünümü yeniden tasarlandı</li>
-            <li class="newspaper-list">Mobil cihazlar için yenilikler sayfası yenilendi</li>
-            <li class="newspaper-list">Mobil cihazlar için kanal listesine ufak dokunuşlar yapıldı</li>
-            <li class="newspaper-list">Yönetici simgesi değişti ve yönetici simgesindeki invert efekti kaldırıldı</li>
-            <li class="newspaper-list">Küfür filtresi geliştirildi</li>
-            <li class="newspaper-list">Mobil cihazlar için mesaj gönderme tuşu yeniden tasarlandı</li>
-            <li class="newspaper-list"><a href="changelog">ChangeLog</a> yani yenilikler sayfası eklendi</li>
-            <li class="newspaper-list">Dinamik sayfa başlıkları eklendi</li>
-            <li class="newspaper-list">Mobil cihazlar için gönder tuşu yeniden tasarlandı</li>
-            <li class="newspaper-list">Versiyon kontrolü ve eski istemcilerin yönetimi ile ilgili güncellemeler yapıldı</li>
-            <li class="newspaper-list">Yönetici konsolu eklendi</li>
-            <li class="newspaper-list">Veritabanı dosya sistemi ve izinleri değiştirildi</li>
-            <li class="newspaper-list">Versiyon yönetimi politikası güncellendi</li>
-            <li class="newspaper-list">Duyurular sayfası eklendi</li>
-            <li class="newspaper-list">Yeni bir yönetici eklendi :)</li>
-            <li class="newspaper-list">Geri bildirim gönderin pop up u eklendi</li>
-            <li class="newspaper-list">Yenilikler sayfası kaydırılabilir oldu</li>
-            <li class="newspaper-list">Yenilikler sayfasının başlığına ufak dokunuşlar yapıldı</li>
-            <li class="newspaper-list">Kanal listesine yeni efektler eklendi</li>
-            <li class="newspaper-list">Yenilikler sayfasında anladım butonuna tıkladıktan sonra sadece mobil cihazlarda gözüken hamburger simgesinin bilgisayarlarda görünme sorunu düzeltildi</li>
-            <li class="newspaper-list">Yöneticiler için oturumu kapat tuşu eklendi</li>
                 <p class="newspaper-footer">Bu güncelleme bunlarla sınırlı olmamakla beraber bunlarıda içerebilir</p>
                 <li class="newspaper-footer-list">Veri işleme&yönetme ile alakalı güvenlik güncellemeleri</li>
             <div class="newspaper-bc"><button class="newspaper-close-button" onclick="closeDialog()">Anladım</button></div>
@@ -107,7 +82,7 @@
         </div>
     </div>
     <div id="userspace">
-        <div class="toast" id="toast">
+        <div class="toast" id="toast" style="display: none !important;">
             <p>TunaChat hala geliştirilme aşamasındadır, geri bildirim sağlamak için instagram @haupt.fuhrer ulaşınız</p>
             <div class="toast-progress" id="toast-p">
                 <progress value="30" min="0" max="100" style="visibility: hidden;height: 0;width: 0;"></progress>
@@ -125,12 +100,12 @@
     <div class="message-showroom" id="msgshowroom">
         <div id="messagerecv">
             <div class="username-container">
-                <p>Mesajlar Yükleniyor...</p>
+                <p>Duyurular yükleniyor...</p>
             </div>
         </div>
         <div class="message-box-container">
-            <input placeholder="Mesaj Yaz" class="message-box" id="msgbox">
-            <button class="message-send" id="msgsend" onclick="send_message()"><img src="send.png" class="send-button-image"></button>
+            <p style="text-align: center;" id="msgbox" class="ann-nowrite">Duyuru kanalına mesaj gönderemezsiniz</p>
+            <span id="msgsend"></span>
         </div>
     </div>
 <script>
@@ -140,7 +115,7 @@
     else{
         document.getElementById("admin_status").innerHTML="Yetki Durumu : user(10.000-99.000)"
     }
-    localStorage.setItem("current-channel", "genel")
+    localStorage.setItem("current-channel", "duyurular")
     var prevScroll = window.pageYOffset
   window.onscroll = function(){
     var currentScroll = window.pageYOffset
