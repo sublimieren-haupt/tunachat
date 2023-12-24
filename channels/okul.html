@@ -18,9 +18,16 @@
         <div id="channel-anim-part">
         <p class="channel-list-title">Kanallar</p>
         <hr>
+        <div class="ann-div">
+            <a href="duyurular" style="text-decoration: none;"><p class="ann" id="okul">Duyurular</p></a>
+            </div>
+        <hr>
         <div class="channel-showroom">
             <a href="../index.html" style="text-decoration: none;"><p class="channel-collider" id="genel">Genel</p></a>
             <p class="current-channel-collider" id="okul">Okul&Ders</p>
+            <hr class="quick-actionbar-splitter">
+            <button class="changelog-button" style="right: 75px; display: none;" id="logOffButton" onclick="localStorage.removeItem('name');location.reload()">Oturumu Kapat</button>
+            <a href="../changelog.html"><button class="changelog-button">Yenilikler</button></a>
         </div>
         <button id="closeMenuButton" class="mobile-nav-close-button" onclick="closeChannelList()">Menüyü Kapat</button>
         </div>
@@ -28,12 +35,29 @@
     <div id ="dialogc" class="dialog-container">
         <div class="dialog-box">
             <p class="dialog-title">YENİLİKLER</p>
-            <li class="newspaper-list">Bulanıklık efekti için sağlam bir optimizasyon yapıldı</li>
-            <li class="newspaper-list">Navigasyon çubuğu ve başlığı eklendi</li>
-            <li class="newspaper-list">Ana başlık fontu değiştirildi</li>
-            <li class="newspaper-list">Navigasyon çubuğu için animasyonlar eklendi</li>
-            <li class="newspaper-list">Menü simgesi içn animasyonlar eklendi</li>
-            <li class="newspaper-list">Köşeleri yuvarlatılmış cihazlar için ( mesela Iphone 15 Pro ve 2019 ve sonraki yıllarda çıkan telefonlar) mesaj kutusu görünümü güncellendi</li>
+            <li class="newspaper-list">Tutarlılık iyileştirildi</li>
+            <li class="newspaper-list">Mobil cihazlar için blur ( bulanıklık efekti ) kaldırıldı</li>
+            <li class="newspaper-list">Mobil cihazlar için mesaj kutusu görünümü yeniden tasarlandı</li>
+            <li class="newspaper-list">Mobil cihazlar için yenilikler sayfası yenilendi</li>
+            <li class="newspaper-list">Mobil cihazlar için kanal listesine ufak dokunuşlar yapıldı</li>
+            <li class="newspaper-list">Yönetici simgesi değişti ve yönetici simgesindeki invert efekti kaldırıldı</li>
+            <li class="newspaper-list">Küfür filtresi geliştirildi</li>
+            <li class="newspaper-list">Mobil cihazlar için mesaj gönderme tuşu yeniden tasarlandı</li>
+            <li class="newspaper-list"><a href="changelog">ChangeLog</a> yani yenilikler sayfası eklendi</li>
+            <li class="newspaper-list">Dinamik sayfa başlıkları eklendi</li>
+            <li class="newspaper-list">Mobil cihazlar için gönder tuşu yeniden tasarlandı</li>
+            <li class="newspaper-list">Versiyon kontrolü ve eski istemcilerin yönetimi ile ilgili güncellemeler yapıldı</li>
+            <li class="newspaper-list">Yönetici konsolu eklendi</li>
+            <li class="newspaper-list">Veritabanı dosya sistemi ve izinleri değiştirildi</li>
+            <li class="newspaper-list">Versiyon yönetimi politikası güncellendi</li>
+            <li class="newspaper-list">Duyurular sayfası eklendi</li>
+            <li class="newspaper-list">Yeni bir yönetici eklendi :)</li>
+            <li class="newspaper-list">Geri bildirim gönderin pop up u eklendi</li>
+            <li class="newspaper-list">Yenilikler sayfası kaydırılabilir oldu</li>
+            <li class="newspaper-list">Yenilikler sayfasının başlığına ufak dokunuşlar yapıldı</li>
+            <li class="newspaper-list">Kanal listesine yeni efektler eklendi</li>
+            <li class="newspaper-list">Yenilikler sayfasında anladım butonuna tıkladıktan sonra sadece mobil cihazlarda gözüken hamburger simgesinin bilgisayarlarda görünme sorunu düzeltildi</li>
+            <li class="newspaper-list">Yöneticiler için oturumu kapat tuşu eklendi</li>
             <hr class="newspaper-spl">
                 <p class="newspaper-footer">Bu güncelleme bunlarla sınırlı olmamakla beraber bunlarıda içerebilir</p>
                 <li class="newspaper-footer-list">Veri işleme&yönetme ile alakalı güvenlik güncellemeleri</li>
@@ -47,6 +71,12 @@
         </h4>
     </div>
     <div id="userspace">
+        <div class="toast" id="toast">
+            <p>TunaChat hala geliştirilme aşamasındadır, geri bildirim sağlamak için instagram @haupt.fuhrer ulaşınız</p>
+            <div class="toast-progress" id="toast-p">
+                <progress value="30" min="0" max="100" style="visibility: hidden;height: 0;width: 0;"></progress>
+            </div>
+        </div>
     <div class="username-container" id="usrcon">
         <p class="title">
             TunaChat
@@ -64,7 +94,7 @@
         </div>
         <div class="message-box-container">
             <input placeholder="Mesaj Yaz" class="message-box" id="msgbox">
-            <button class="message-send" id="msgsend" onclick="send_message()">Gönder</button>
+            <button class="message-send" id="msgsend" onclick="send_message()"><img src="send.png" class="send-button-image"></button>
         </div>
     </div>
 </div>
@@ -83,6 +113,9 @@
       document.getElementById("mhamburger").style.borderRadius = "3px"
       prevScroll = currentScroll
     }
+  }
+  if(localStorage.getItem("name") != null){
+    document.title= "TunaChat - " + localStorage.getItem("current-channel")
   }
 </script>
 </body>
